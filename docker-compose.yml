@@ -1,0 +1,51 @@
+version: '2'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Suveksha
+    container_name: php73
+    volumes:
+      - ./Suveksha_1181:/var/www/html/
+    ports:
+      - "8000:8080"
+    environment:
+      - NAME='Suveksha Chettri'
+      - REGNO=11811992
+    depends_on:
+      - db
+    networks:
+      mynet:
+        ipv4_address: 11.81.19.20
+
+
+  db:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Suveksha
+      MYSQL_DATABASE: BloodData
+      MYSQL_USER: Suveksha
+      MYSQL_PASSWORD: Suveksha
+    ports: 
+      - "6000:6080"
+    volumes:
+      - ./Suveksha_1992:/var/lib/mysql/
+    networks:
+      mynet:
+        ipv4_address: 11.81.19.22
+
+networks:
+  mynet:
+    ipam:
+      driver: default
+      config:
+        - subnet: 11.81.19.92/24
+          gateway: 11.81.19.10
+
+
+
+
+
+ 
